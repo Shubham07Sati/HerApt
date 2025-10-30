@@ -15,12 +15,12 @@ class CareerAssessmentForm:
     def display_welcome(self):
         """Welcome message"""
         print("\n" + "="*80)
-        print("🎯 HERAPT CAREER ASSESSMENT - INTERACTIVE QUESTIONNAIRE")
+        print(" HERAPT CAREER ASSESSMENT - INTERACTIVE QUESTIONNAIRE")
         print("="*80)
         print("\nWelcome! This comprehensive assessment will help us recommend")
         print("the perfect career paths for you based on 48 different factors.\n")
-        print("⏱️  Estimated time: 10-15 minutes")
-        print("📝 Answer honestly for best results!\n")
+        print("  Estimated time: 10-15 minutes")
+        print(" Answer honestly for best results!\n")
         input("Press Enter to begin...")
     
     def question_numeric(self, key, question, min_val, max_val, unit=""):
@@ -33,9 +33,9 @@ class CareerAssessmentForm:
                     self.answers[key] = value
                     return value
                 else:
-                    print(f"❌ Please enter a value between {min_val} and {max_val}")
+                    print(f" Please enter a value between {min_val} and {max_val}")
             except ValueError:
-                print("❌ Invalid input. Please enter a number.")
+                print(" Invalid input. Please enter a number.")
     
     def question_choice(self, key, question, options):
         """Ask multiple choice question"""
@@ -50,9 +50,9 @@ class CareerAssessmentForm:
                     self.answers[key] = options[choice - 1]
                     return options[choice - 1]
                 else:
-                    print(f"❌ Please choose between 1 and {len(options)}")
+                    print(f" Please choose between 1 and {len(options)}")
             except ValueError:
-                print("❌ Invalid input. Please enter a number.")
+                print(" Invalid input. Please enter a number.")
     
     def question_scale(self, key, question, scale=5):
         """Ask 1-5 scale question"""
@@ -69,15 +69,15 @@ class CareerAssessmentForm:
                     self.answers[key] = response
                     return response
                 else:
-                    print(f"❌ Please choose between 1 and {scale}")
+                    print(f" Please choose between 1 and {scale}")
             except ValueError:
-                print("❌ Invalid input.")
+                print(" Invalid input.")
     
     def run_assessment(self):
         """Run complete assessment"""
         self.display_welcome()
         
-        # Section 1: Basic Information
+        
         print("\n" + "="*80)
         print("SECTION 1: BASIC INFORMATION")
         print("="*80)
@@ -97,7 +97,7 @@ class CareerAssessmentForm:
         self.question_numeric('GPA', 
             "Your GPA/Percentage (on 4.0 scale)", 0, 4.0)
         
-        # Section 2: Experience
+        
         print("\n" + "="*80)
         print("SECTION 2: EXPERIENCE & BACKGROUND")
         print("="*80)
@@ -117,7 +117,7 @@ class CareerAssessmentForm:
         self.question_numeric('Extracurricular_Activities',
             "Extracurricular activities you've participated in", 0, 20)
         
-        # Section 3: Career Break
+        
         print("\n" + "="*80)
         print("SECTION 3: CAREER BREAK (If Applicable)")
         print("="*80)
@@ -134,7 +134,7 @@ class CareerAssessmentForm:
             self.answers['Career_Break_Months'] = 0
             self.answers['Career_Break'] = 0
         
-        # Section 4: Technical Skills
+        
         print("\n" + "="*80)
         print("SECTION 4: TECHNICAL SKILLS")
         print("="*80)
@@ -154,7 +154,7 @@ class CareerAssessmentForm:
         self.question_scale('Domain_Expertise_Depth',
             "Deep expertise in your field/domain", 5)
         
-        # Section 5: Soft Skills
+        
         print("\n" + "="*80)
         print("SECTION 5: SOFT SKILLS")
         print("="*80)
@@ -177,7 +177,7 @@ class CareerAssessmentForm:
         self.question_scale('Conflict_Resolution_Skills',
             "Rate your conflict resolution abilities", 5)
         
-        # Section 6: Personal Traits
+        
         print("\n" + "="*80)
         print("SECTION 6: PERSONALITY & TRAITS")
         print("="*80)
@@ -206,7 +206,7 @@ class CareerAssessmentForm:
         self.question_scale('Mentoring_Experience',
             "Experience mentoring others", 5)
         
-        # Section 7: Career Preferences
+        
         print("\n" + "="*80)
         print("SECTION 7: CAREER PREFERENCES")
         print("="*80)
@@ -236,7 +236,7 @@ class CareerAssessmentForm:
         self.question_numeric('Salary_Expectation_Lakh',
             "Expected salary (in lakh per annum)", 1, 100)
         
-        # Section 8: Goals & Support
+        
         print("\n" + "="*80)
         print("SECTION 8: GOALS & FAMILY SUPPORT")
         print("="*80)
@@ -259,11 +259,11 @@ class CareerAssessmentForm:
         
         self.answers['Willing_To_Relocate'] = 0 if self.answers['Willing_To_Relocate'] == 'No' else 1
         
-        # Add missing numeric conversions
+        
         self.answers['Prefer_Corporate'] = 0 if self.answers['Prefer_Corporate'] == 'Startup (Dynamic, Fast-paced)' else 1
         
         print("\n" + "="*80)
-        print("✅ ASSESSMENT COMPLETE!")
+        print(" ASSESSMENT COMPLETE!")
         print("="*80)
         print("\nAnalyzing your profile and generating career recommendations...")
         print("(This may take a moment...)\n")
@@ -276,17 +276,17 @@ class CareerAssessmentForm:
             recommendations = self.predictor.predict_with_success_rate(self.answers)
             return recommendations
         except Exception as e:
-            print(f"❌ Error getting predictions: {e}")
+            print(f" Error getting predictions: {e}")
             return None
     
     def display_results(self, recommendations):
         """Display results beautifully"""
         if not recommendations:
-            print("❌ Could not generate recommendations")
+            print(" Could not generate recommendations")
             return
         
         print("\n" + "="*80)
-        print("🎉 YOUR PERSONALIZED CAREER RECOMMENDATIONS")
+        print(" YOUR PERSONALIZED CAREER RECOMMENDATIONS")
         print("="*80)
         
         print(f"\nBased on your 48-factor profile analysis:\n")
@@ -295,14 +295,14 @@ class CareerAssessmentForm:
             print(f"{rank}. {career.upper()}")
             print(f"   Success Probability: {success_pct:.1f}%", end="")
             
-            # Visual bar
+            
             bar_filled = int(success_pct / 5)
             bar_empty = 20 - bar_filled
             print(f"  {'█' * bar_filled}{'░' * bar_empty}")
             
             print(f"   Match Score: {match_score:.1f}%")
             
-            # Interpretation
+            
             if success_pct >= 75:
                 interpretation = "🟢 Excellent Fit - Highly Recommended"
             elif success_pct >= 60:
@@ -315,12 +315,12 @@ class CareerAssessmentForm:
             print(f"   {interpretation}\n")
         
         print("="*80)
-        print("\n💡 WHAT THIS MEANS:")
+        print("\n WHAT THIS MEANS:")
         print("   - Success Probability: Likelihood of success in this career")
         print("   - Match Score: How well your profile aligns with the career")
         print("   - Based on 48 factors: skills, experience, goals, preferences, traits")
         
-        print("\n📌 NEXT STEPS:")
+        print("\n NEXT STEPS:")
         print("   1. Select your top choice career")
         print("   2. Get personalized upskilling plan")
         print("   3. Connect with a mentor in that field")
