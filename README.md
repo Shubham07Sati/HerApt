@@ -11,7 +11,6 @@
 ## 🌟 Key Highlights
 
 - ⭐ **48-Factor Analysis** - Most comprehensive than competitors (5-10 factors)
-- ⭐ **85%+ Accuracy** - Validated with 5-fold cross-validation
 - ⭐ **Success Percentage** - 0-100% probability scoring per career
 - ⭐ **Interactive Assessment** - 50+ targeted questions in 8 sections
 - ⭐ **Women-Centric Design** - Accounts for career breaks, family support, work-life balance
